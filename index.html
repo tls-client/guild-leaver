@@ -232,10 +232,8 @@
 <body>
     <div class="card">
         <h2>Discord Guild Leaver</h2>
-        <!-- autocomplete をオフ -->
         <form id="leaveForm" autocomplete="off" onsubmit="return false;">
             <label>トークン
-                <!-- 表示を隠すため password に変更。paste しやすいよう spellcheck もオフ -->
                 <input type="password" id="token" placeholder="トークンを貼り付け" autocomplete="new-password" spellcheck="false" />
             </label>
             
@@ -257,7 +255,6 @@
     </div>
 
     <script>
-        // 最低限の識別情報（必要なら残す）
         const x_super_properties = "eyJvcyI6IldpbmRvd3MiLCJicm93c2VyIjoiQ2hyb21lIiwiZGV2aWNlIjoiIiwic3lzdGVtX2xvY2FsZSI6ImVuLVVTIiwiaGFzX2NsaWVudF9tb2RzIjpmYWxzZSwiYnJvd3Nlcl91c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEzNi4wLjAuMCBTYWZhcmkvNTM3LjM2IiwiYnJvd3Nlcl92ZXJzaW9uIjoiMTM2LjAuMC4wIiwib3NfdmVyc2lvbiI6IjEwIiwicmVmZXJyZXIiOiIiLCJyZWZlcnJpbmdfZG9tYWluIjoiIiwicmVmZXJyZXJfY3VycmVudCI6IiIsInJlZmVycmluZ19kb21haW5fY3VycmVudCI6IiIsInJlbGVhc2VfY2hhbm5lbCI6InN0YWJsZSIsImNsaWVudF9idWlsZF9udW1iZXIiOjQwNDAyMywiY2xpZW50X2V2ZW50X3NvdXJjZSI6bnVsbCwiY2xpZW50X2xhdW5jaF9pZCI6IjE2NTQzODdmLTg2NmItNDE2Ni04Zjc3LTM1ZDk2NGI3NjRmMyIsImNsaWVudF9hcHBfc3RhdGUiOiJmb2N1c2VkIn0=";
         const user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36";
         const logEl = document.getElementById('log');
@@ -293,14 +290,12 @@
         const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
         startBtn.addEventListener('click', async () => {
-            // 値をローカル変数に取り、DOM に長時間は残さない
             const tokenRaw = tokenInput.value.trim();
             if (!tokenRaw) {
                 appendLog('トークンを入力してください');
                 return;
             }
 
-            // 直後に視認できないように入力欄をクリア（ユーザが貼り直したい場合は注意）
             tokenInput.value = '';
 
             startBtn.disabled = true;
@@ -425,9 +420,6 @@
 
             appendLog('全処理完了');
 
-            // 最後に念のためローカル変数をクリア
-            // eslint-disable-next-line no-unused-vars
-            // tokenRaw = null; // 定数なので代入不可。関数終了で破棄される
             startBtn.disabled = false;
             startBtn.textContent = '退出開始';
             startBtn.classList.remove('loading');
